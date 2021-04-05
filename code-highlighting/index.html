@@ -49,44 +49,35 @@
 <div class="g-app-wrapper svelte-1om9u5x"><div><nav class="svelte-t63ly7"><a href="/svelte-kit-blog-demo/" class="svelte-t63ly7"><h3 class="home svelte-t63ly7">HOME</h3></a>
     <a href="/svelte-kit-blog-demo/about" class="svelte-t63ly7"><h3 class="about svelte-t63ly7">about</h3></a></nav>
 </div>
-  <h1 class="title svelte-1mgzh8t">Create Your Blog with SvelteKit</h1>
-<p class="info"><a href="https://github.com/zhuzilin">zhuzilin</a> APR 3, 2021</p>
-<p>Recently, SvelteKit is <a href="https://svelte.dev/blog/sveltekit-beta">released in public beta</a>. It's always better to learn with project. And this is such a starter project - creating a markdown based blog with SvelteKit.</p>
-<h2>Very Basic of SvelteKit</h2>
-<p>Before getting into the blog relevant part, I believe it's necessary to give a</p>
-<h2>Read the markdown files</h2>
-<pre><code class="hljs language-js"><span class="hljs-comment">// [slug].json.js</span>
-<span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>;
+  <h1 class="title svelte-1mgzh8t">Add Code Highlighting to Your Blog</h1>
+<p class="info"><a href="https://github.com/zhuzilin">zhuzilin</a> APR 4, 2021</p>
+<p>As we are using the remark (unified.js) ecosystem, it' s pretty easy to add code highlighting to our markdown posts. We could simply add the <a href="https://highlightjs.org/">highlight.js</a> plugin — <a href="https://github.com/rehypejs/rehype-highlight">rehype-highlight</a> to the remark processor:</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">import</span> highlight <span class="hljs-keyword">from</span> <span class="hljs-string">'rehype-highlight'</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">{ params }</span>) </span>{
-  <span class="hljs-keyword">const</span> { slug } = params;
-
-  <span class="hljs-keyword">let</span> data = fs.readSync(<span class="hljs-string">`src/posts/<span class="hljs-subst">${slug}</span>.md`</span>);
-  ...
+<span class="hljs-keyword">let</span> runner = unified()
+    .use(remark2rehype)
+    .use(highlight)
+    .use(rehypeStringify);
+</code></pre>
+<p>And the generated html would have the class names of highlight.js.</p>
+<p>Then, attach the desired style theme to the header in <code>$layout.svelte</code>. In this project, I chosed the github theme:</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&#x3C;<span class="hljs-name">svelte:head</span>></span>
+  <span class="hljs-tag">&#x3C;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>
+    <span class="hljs-attr">href</span>=<span class="hljs-string">"//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"</span>></span>
+<span class="hljs-tag">&#x3C;/<span class="hljs-name">svelte:head</span>></span>
+</code></pre>
+<p>And now comes the highlighted code!</p>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello, World!"</span>);
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h2>Parse the markdown with remark</h2>
-<h2>Rendered the generated html</h2>
-<pre><code class="hljs language-html"><span class="hljs-tag">&#x3C;<span class="hljs-name">script</span> <span class="hljs-attr">context</span>=<span class="hljs-string">"module"</span>></span><span class="javascript">
-  <span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span>(<span class="hljs-params">{ page, fetch }</span>) </span>{
-    <span class="hljs-keyword">const</span> slug = page.params.slug;
-    <span class="hljs-keyword">const</span> post = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`/<span class="hljs-subst">${slug}</span>.json`</span>)
-        .then(<span class="hljs-function">(<span class="hljs-params">r</span>) =></span> r.json());
-    <span class="hljs-keyword">return</span> {
-      <span class="hljs-attr">props</span>: { post }
-    };
-  }
-</span><span class="hljs-tag">&#x3C;/<span class="hljs-name">script</span>></span>
-
-{@html post.content}
-</code></pre>
-<h2>Tips</h2>
-<p>Some confusing errrors could be solved by moving the dependencies to <code>devDependencies</code> due to some bugs of Vite.</p>
 </div>
 
 
 
-	<script type="svelte-data" url="/code-highlighting.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"Create Your Blog with SvelteKit\",\"date\":\"Apr 3, 2021\",\"excerpt\":\"It's time to rewrite your blog in SvelteKit!\"},\"content\":\"\u003Cp\u003ERecently, SvelteKit is \u003Ca href=\\\"https:\u002F\u002Fsvelte.dev\u002Fblog\u002Fsveltekit-beta\\\"\u003Ereleased in public beta\u003C\u002Fa\u003E. It's always better to learn with project. And this is such a starter project - creating a markdown based blog with SvelteKit.\u003C\u002Fp\u003E\\n\u003Ch2\u003EVery Basic of SvelteKit\u003C\u002Fh2\u003E\\n\u003Cp\u003EBefore getting into the blog relevant part, I believe it's necessary to give a\u003C\u002Fp\u003E\\n\u003Ch2\u003ERead the markdown files\u003C\u002Fh2\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-js\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F [slug].json.js\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E fs \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E'fs'\u003C\u002Fspan\u003E;\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Efunction\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003Eget\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E{ params }\u003C\u002Fspan\u003E) \u003C\u002Fspan\u003E{\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E { slug } = params;\\n\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E data = fs.readSync(\u003Cspan class=\\\"hljs-string\\\"\u003E`src\u002Fposts\u002F\u003Cspan class=\\\"hljs-subst\\\"\u003E${slug}\u003C\u002Fspan\u003E.md`\u003C\u002Fspan\u003E);\\n  ...\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch2\u003EParse the markdown with remark\u003C\u002Fh2\u003E\\n\u003Ch2\u003ERendered the generated html\u003C\u002Fh2\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-html\\\"\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u003Cspan class=\\\"hljs-name\\\"\u003Escript\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Econtext\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"module\\\"\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\u003Cspan class=\\\"javascript\\\"\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Easync\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Efunction\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003Eload\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E{ page, fetch }\u003C\u002Fspan\u003E) \u003C\u002Fspan\u003E{\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E slug = page.params.slug;\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E post = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E fetch(\u003Cspan class=\\\"hljs-string\\\"\u003E`\u002F\u003Cspan class=\\\"hljs-subst\\\"\u003E${slug}\u003C\u002Fspan\u003E.json`\u003C\u002Fspan\u003E)\\n        .then(\u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003Er\u003C\u002Fspan\u003E) =\u003E\u003C\u002Fspan\u003E r.json());\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E {\\n      \u003Cspan class=\\\"hljs-attr\\\"\u003Eprops\u003C\u002Fspan\u003E: { post }\\n    };\\n  }\\n\u003C\u002Fspan\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u002F\u003Cspan class=\\\"hljs-name\\\"\u003Escript\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n\\n{@html post.content}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch2\u003ETips\u003C\u002Fh2\u003E\\n\u003Cp\u003ESome confusing errrors could be solved by moving the dependencies to \u003Ccode\u003EdevDependencies\u003C\u002Fcode\u003E due to some bugs of Vite.\u003C\u002Fp\u003E\"}"}</script>
+	<script type="svelte-data" url="/code-highlighting.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"Add Code Highlighting to Your Blog\",\"date\":\"Apr 4, 2021\",\"excerpt\":\"Without highlighting, code are just paragraphs of chaos...\"},\"content\":\"\u003Cp\u003EAs we are using the remark (unified.js) ecosystem, it' s pretty easy to add code highlighting to our markdown posts. We could simply add the \u003Ca href=\\\"https:\u002F\u002Fhighlightjs.org\u002F\\\"\u003Ehighlight.js\u003C\u002Fa\u003E plugin — \u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002Frehypejs\u002Frehype-highlight\\\"\u003Erehype-highlight\u003C\u002Fa\u003E to the remark processor:\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E highlight \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E'rehype-highlight'\u003C\u002Fspan\u003E;\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E runner = unified()\\n    .use(remark2rehype)\\n    .use(highlight)\\n    .use(rehypeStringify);\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EAnd the generated html would have the class names of highlight.js.\u003C\u002Fp\u003E\\n\u003Cp\u003EThen, attach the desired style theme to the header in \u003Ccode\u003E$layout.svelte\u003C\u002Fcode\u003E. In this project, I chosed the github theme:\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-html\\\"\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u003Cspan class=\\\"hljs-name\\\"\u003Esvelte:head\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u003Cspan class=\\\"hljs-name\\\"\u003Elink\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Erel\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"stylesheet\\\"\u003C\u002Fspan\u003E\\n    \u003Cspan class=\\\"hljs-attr\\\"\u003Ehref\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fhighlight.js\u002F10.7.1\u002Fstyles\u002Fgithub.min.css\\\"\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u002F\u003Cspan class=\\\"hljs-name\\\"\u003Esvelte:head\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EAnd now comes the highlighted code!\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-c\\\"\u003E\u003Cspan class=\\\"hljs-meta\\\"\u003E#\u003Cspan class=\\\"hljs-meta-keyword\\\"\u003Einclude\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-meta-string\\\"\u003E&#x3C;stdio.h\u003E\u003C\u002Fspan\u003E\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eint\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003Emain\u003C\u002Fspan\u003E\u003Cspan class=\\\"hljs-params\\\"\u003E()\u003C\u002Fspan\u003E \u003C\u002Fspan\u003E{\\n   \u003Cspan class=\\\"hljs-built_in\\\"\u003Eprintf\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"Hello, World!\\\"\u003C\u002Fspan\u003E);\\n   \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E;\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\"}"}</script>
 </div>
 	</body>
 </html>
