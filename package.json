@@ -1,0 +1,30 @@
+{
+	"name": "svelte-kit-blog-demo",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "rm -rf build && svelte-kit build && touch build/.nojekyll",
+		"start": "svelte-kit start",
+		"deploy": "npm run build && npx gh-pages -d build -t true"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-node": "next",
+		"@sveltejs/adapter-static": "^1.0.0-next.0",
+		"@sveltejs/kit": "next",
+		"dayjs": "^1.10.4",
+		"js-yaml": "^3.14.1",
+		"rehype-highlight": "^4.1.0",
+		"rehype-stringify": "^8.0.0",
+		"remark-frontmatter": "^3.0.0",
+		"remark-gfm": "^1.0.0",
+		"remark-parse": "^9.0.0",
+		"remark-rehype": "^8.0.0",
+		"sass": "^1.0.0",
+		"svelte": "^3.29.0",
+		"svelte-preprocess": "^4.0.0",
+		"to-vfile": "^6.1.0",
+		"unified": "^9.2.1",
+		"vite": "^2.1.0"
+	},
+	"type": "module"
+}
