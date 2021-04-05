@@ -8,18 +8,18 @@
 
 
 
-<link rel="modulepreload" href="/./_app/start-844aa140.js">
-			<link rel="modulepreload" href="/./_app/chunks/vendor-8b508088.js">
-			<link rel="modulepreload" href="/./_app/pages/[slug].svelte-f484fb14.js">
-			<link rel="stylesheet" href="/./_app/assets/start-a0d89089.css">
-			<link rel="stylesheet" href="/./_app/assets/pages/[slug].svelte-910cbb92.css">
+<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-844aa140.js">
+			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-8b508088.js">
+			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/[slug].svelte-f484fb14.js">
+			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-a0d89089.css">
+			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/[slug].svelte-910cbb92.css">
 
 
 		<script type="module">
-			import { start } from "/./_app/start-844aa140.js";
+			import { start } from "/svelte-kit-blog-demo/_app/start-844aa140.js";
 			start({
 				target: document.querySelector("#svelte"),
-				paths: {"base":"","assets":"/."},
+				paths: {"base":"/svelte-kit-blog-demo","assets":"/svelte-kit-blog-demo"},
 				session: {},
 				host: location.host,
 				route: true,
@@ -27,7 +27,7 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/./_app/pages/[slug].svelte-f484fb14.js")
+						import("/svelte-kit-blog-demo/_app/pages/[slug].svelte-f484fb14.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -50,21 +50,42 @@
 </div>
   <h1 class="title svelte-1mgzh8t">Create Your Blog with SvelteKit</h1>
 <p class="info"><a href="https://github.com/zhuzilin">zhuzilin</a> APR 3, 2021</p>
-<p>Recently, SvelteKit is <a href="https://svelte.dev/blog/sveltekit-beta">released in public beta</a>. It's always better to learn with project and for a Server Side Rendering (SSR) oriented framework, creating a blog is</p>
+<p>Recently, SvelteKit is <a href="https://svelte.dev/blog/sveltekit-beta">released in public beta</a>. It's always better to learn with project. And this is such a starter project - creating a markdown based blog with SvelteKit.</p>
 <h2>Very Basic of SvelteKit</h2>
 <p>Before getting into the blog relevant part, I believe it's necessary to give a</p>
-<h2>Install</h2>
-<p><strong>example</strong>.</p>
-<h2>Use</h2>
-<p>More <code>text</code>.</p>
-<h2>Possible Errors</h2>
+<h2>Read the markdown files</h2>
+<pre><code class="hljs language-js"><span class="hljs-comment">// [slug].json.js</span>
+<span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">{ params }</span>) </span>{
+  <span class="hljs-keyword">const</span> { slug } = params;
+
+  <span class="hljs-keyword">let</span> data = fs.readSync(<span class="hljs-string">`src/posts/<span class="hljs-subst">${slug}</span>.md`</span>);
+  ...
+}
+</code></pre>
+<h2>Parse the markdown with remark</h2>
+<h2>Rendered the generated html</h2>
+<pre><code class="hljs language-html"><span class="hljs-tag">&#x3C;<span class="hljs-name">script</span> <span class="hljs-attr">context</span>=<span class="hljs-string">"module"</span>></span><span class="javascript">
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span>(<span class="hljs-params">{ page, fetch }</span>) </span>{
+    <span class="hljs-keyword">const</span> slug = page.params.slug;
+    <span class="hljs-keyword">const</span> post = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">`/<span class="hljs-subst">${slug}</span>.json`</span>)
+        .then(<span class="hljs-function">(<span class="hljs-params">r</span>) =></span> r.json());
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">props</span>: { post }
+    };
+  }
+</span><span class="hljs-tag">&#x3C;/<span class="hljs-name">script</span>></span>
+
+{@html post.content}
+</code></pre>
+<h2>Tips</h2>
 <p>Some confusing errrors could be solved by moving the dependencies to <code>devDependencies</code> due to some bugs of Vite.</p>
-<p>MIT</p>
 </div>
 
 
 
-	<script type="svelte-data" url="/deply-to-github.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"Create Your Blog with SvelteKit\",\"date\":\"Apr 3, 2021\",\"excerpt\":\"It's time to rewrite your blog in SvelteKit!\"},\"content\":\"\u003Cp\u003ERecently, SvelteKit is \u003Ca href=\\\"https:\u002F\u002Fsvelte.dev\u002Fblog\u002Fsveltekit-beta\\\"\u003Ereleased in public beta\u003C\u002Fa\u003E. It's always better to learn with project and for a Server Side Rendering (SSR) oriented framework, creating a blog is\u003C\u002Fp\u003E\\n\u003Ch2\u003EVery Basic of SvelteKit\u003C\u002Fh2\u003E\\n\u003Cp\u003EBefore getting into the blog relevant part, I believe it's necessary to give a\u003C\u002Fp\u003E\\n\u003Ch2\u003EInstall\u003C\u002Fh2\u003E\\n\u003Cp\u003E\u003Cstrong\u003Eexample\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\\n\u003Ch2\u003EUse\u003C\u002Fh2\u003E\\n\u003Cp\u003EMore \u003Ccode\u003Etext\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\\n\u003Ch2\u003EPossible Errors\u003C\u002Fh2\u003E\\n\u003Cp\u003ESome confusing errrors could be solved by moving the dependencies to \u003Ccode\u003EdevDependencies\u003C\u002Fcode\u003E due to some bugs of Vite.\u003C\u002Fp\u003E\\n\u003Cp\u003EMIT\u003C\u002Fp\u003E\"}"}</script>
+	<script type="svelte-data" url="/deply-to-github.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"Create Your Blog with SvelteKit\",\"date\":\"Apr 3, 2021\",\"excerpt\":\"It's time to rewrite your blog in SvelteKit!\"},\"content\":\"\u003Cp\u003ERecently, SvelteKit is \u003Ca href=\\\"https:\u002F\u002Fsvelte.dev\u002Fblog\u002Fsveltekit-beta\\\"\u003Ereleased in public beta\u003C\u002Fa\u003E. It's always better to learn with project. And this is such a starter project - creating a markdown based blog with SvelteKit.\u003C\u002Fp\u003E\\n\u003Ch2\u003EVery Basic of SvelteKit\u003C\u002Fh2\u003E\\n\u003Cp\u003EBefore getting into the blog relevant part, I believe it's necessary to give a\u003C\u002Fp\u003E\\n\u003Ch2\u003ERead the markdown files\u003C\u002Fh2\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-js\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F [slug].json.js\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E fs \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E'fs'\u003C\u002Fspan\u003E;\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Efunction\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003Eget\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E{ params }\u003C\u002Fspan\u003E) \u003C\u002Fspan\u003E{\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E { slug } = params;\\n\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E data = fs.readSync(\u003Cspan class=\\\"hljs-string\\\"\u003E`src\u002Fposts\u002F\u003Cspan class=\\\"hljs-subst\\\"\u003E${slug}\u003C\u002Fspan\u003E.md`\u003C\u002Fspan\u003E);\\n  ...\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch2\u003EParse the markdown with remark\u003C\u002Fh2\u003E\\n\u003Ch2\u003ERendered the generated html\u003C\u002Fh2\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-html\\\"\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u003Cspan class=\\\"hljs-name\\\"\u003Escript\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Econtext\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"module\\\"\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\u003Cspan class=\\\"javascript\\\"\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Easync\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Efunction\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003Eload\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E{ page, fetch }\u003C\u002Fspan\u003E) \u003C\u002Fspan\u003E{\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E slug = page.params.slug;\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E post = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E fetch(\u003Cspan class=\\\"hljs-string\\\"\u003E`\u002F\u003Cspan class=\\\"hljs-subst\\\"\u003E${slug}\u003C\u002Fspan\u003E.json`\u003C\u002Fspan\u003E)\\n        .then(\u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003Er\u003C\u002Fspan\u003E) =\u003E\u003C\u002Fspan\u003E r.json());\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E {\\n      \u003Cspan class=\\\"hljs-attr\\\"\u003Eprops\u003C\u002Fspan\u003E: { post }\\n    };\\n  }\\n\u003C\u002Fspan\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u002F\u003Cspan class=\\\"hljs-name\\\"\u003Escript\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n\\n{@html post.content}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch2\u003ETips\u003C\u002Fh2\u003E\\n\u003Cp\u003ESome confusing errrors could be solved by moving the dependencies to \u003Ccode\u003EdevDependencies\u003C\u002Fcode\u003E due to some bugs of Vite.\u003C\u002Fp\u003E\"}"}</script>
 </div>
 	</body>
 </html>
