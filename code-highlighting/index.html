@@ -4,20 +4,20 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="/svelte-kit-blog-demo/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-dd1lau">
+		<title>Add Code Highlighting to Your Blog</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-dd1lau">
 
 
 
-<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-7695d1d5.js">
+<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-33cb5039.js">
 			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-8b508088.js">
 			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/paths-d3b7dcf1.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/[slug].svelte-7304c0ec.js">
+			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/[slug].svelte-d17a7391.js">
 			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-72be6fc8.css">
 			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/[slug].svelte-910cbb92.css">
 
 
 		<script type="module">
-			import { start } from "/svelte-kit-blog-demo/_app/start-7695d1d5.js";
+			import { start } from "/svelte-kit-blog-demo/_app/start-33cb5039.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/svelte-kit-blog-demo","assets":"/svelte-kit-blog-demo"},
@@ -28,7 +28,7 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/svelte-kit-blog-demo/_app/pages/[slug].svelte-7304c0ec.js")
+						import("/svelte-kit-blog-demo/_app/pages/[slug].svelte-d17a7391.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -49,7 +49,9 @@
 <div class="g-app-wrapper svelte-1t5t1dy"><div><nav class="svelte-t63ly7"><a href="/svelte-kit-blog-demo/" class="svelte-t63ly7"><h3 class="home svelte-t63ly7">HOME</h3></a>
     <a href="/svelte-kit-blog-demo/about" class="svelte-t63ly7"><h3 class="about svelte-t63ly7">about</h3></a></nav>
 </div>
-  <h1 class="title svelte-1mgzh8t">Add Code Highlighting to Your Blog</h1>
+  
+
+<h1 class="title svelte-1mgzh8t">Add Code Highlighting to Your Blog</h1>
 <p class="info"><a href="https://github.com/zhuzilin">zhuzilin</a> APR 4, 2021</p>
 <p>As we are using the remark (unified.js) ecosystem, it' s pretty easy to add code highlighting to our markdown posts. We could simply add the <a href="https://highlightjs.org/">highlight.js</a> plugin — <a href="https://github.com/rehypejs/rehype-highlight">rehype-highlight</a> to the remark processor:</p>
 <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> highlight <span class="hljs-keyword">from</span> <span class="hljs-string">'rehype-highlight'</span>;
