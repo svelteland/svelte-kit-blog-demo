@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/svelte-kit-blog-demo/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Add Code Highlighting to Your Blog</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-dd1lau">
+
+
+
+<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-3c76082a.js">
+			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-8b508088.js">
+			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/paths-d3b7dcf1.js">
+			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/[slug].svelte-d17a7391.js">
+			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-c28f9b76.css">
+			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/[slug].svelte-910cbb92.css">
+
+
+		<script type="module">
+			import { start } from "/svelte-kit-blog-demo/_app/start-3c76082a.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"/svelte-kit-blog-demo","assets":"/svelte-kit-blog-demo"},
+				session: {},
+				host: location.host,
+				route: true,
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/svelte-kit-blog-demo/_app/pages/[slug].svelte-d17a7391.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "/code-highlighting",
+						query: new URLSearchParams(""),
+						params: {"slug":"code-highlighting"}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+
+
+<div class="g-app-wrapper svelte-1b6ygo1"><div><nav class="svelte-t63ly7"><a href="/svelte-kit-blog-demo/" class="svelte-t63ly7"><h3 class="home svelte-t63ly7">HOME</h3></a>
+    <a href="/svelte-kit-blog-demo/about" class="svelte-t63ly7"><h3 class="about svelte-t63ly7">about</h3></a></nav>
+</div>
+  
+
+<h1 class="title svelte-1mgzh8t">Add Code Highlighting to Your Blog</h1>
+<p class="info"><a href="https://github.com/zhuzilin">zhuzilin</a> APR 4, 2021</p>
+<p>The code highlighting part is relative isolated.</p>
+<p>As we are using the remark (unified.js) ecosystem, it' s pretty easy to add code highlighting to our markdown posts. We could simply add the <a href="https://highlightjs.org/">highlight.js</a> plugin — <a href="https://github.com/rehypejs/rehype-highlight">rehype-highlight</a> to the remark processor:</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">import</span> highlight <span class="hljs-keyword">from</span> <span class="hljs-string">'rehype-highlight'</span>;
+
+<span class="hljs-keyword">let</span> runner = unified()
+    .use(remark2rehype)
+    .use(highlight)
+    .use(rehypeStringify);
+</code></pre>
+<p>And the generated html would have the class names of highlight.js.</p>
+<p>Then, attach the desired style theme to the header in <code>$layout.svelte</code>. In this project, I chosed the github theme:</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&#x3C;<span class="hljs-name">svelte:head</span>></span>
+  <span class="hljs-tag">&#x3C;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>
+    <span class="hljs-attr">href</span>=<span class="hljs-string">"//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css"</span>></span>
+<span class="hljs-tag">&#x3C;/<span class="hljs-name">svelte:head</span>></span>
+</code></pre>
+<p>And now comes the highlighted code!</p>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello, World!"</span>);
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+</div>
+
+
+
+	<script type="svelte-data" url="/code-highlighting.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"{\"metadata\":{\"title\":\"Add Code Highlighting to Your Blog\",\"date\":\"Apr 4, 2021\",\"excerpt\":\"Without highlighting, code are just paragraphs of chaos...\"},\"content\":\"\u003Cp\u003EThe code highlighting part is relative isolated.\u003C\u002Fp\u003E\\n\u003Cp\u003EAs we are using the remark (unified.js) ecosystem, it' s pretty easy to add code highlighting to our markdown posts. We could simply add the \u003Ca href=\\\"https:\u002F\u002Fhighlightjs.org\u002F\\\"\u003Ehighlight.js\u003C\u002Fa\u003E plugin — \u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002Frehypejs\u002Frehype-highlight\\\"\u003Erehype-highlight\u003C\u002Fa\u003E to the remark processor:\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E highlight \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E'rehype-highlight'\u003C\u002Fspan\u003E;\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E runner = unified()\\n    .use(remark2rehype)\\n    .use(highlight)\\n    .use(rehypeStringify);\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EAnd the generated html would have the class names of highlight.js.\u003C\u002Fp\u003E\\n\u003Cp\u003EThen, attach the desired style theme to the header in \u003Ccode\u003E$layout.svelte\u003C\u002Fcode\u003E. In this project, I chosed the github theme:\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-html\\\"\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u003Cspan class=\\\"hljs-name\\\"\u003Esvelte:head\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u003Cspan class=\\\"hljs-name\\\"\u003Elink\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Erel\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"stylesheet\\\"\u003C\u002Fspan\u003E\\n    \u003Cspan class=\\\"hljs-attr\\\"\u003Ehref\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fhighlight.js\u002F10.7.1\u002Fstyles\u002Fgithub.min.css\\\"\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-tag\\\"\u003E&#x3C;\u002F\u003Cspan class=\\\"hljs-name\\\"\u003Esvelte:head\u003C\u002Fspan\u003E\u003E\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EAnd now comes the highlighted code!\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"hljs language-c\\\"\u003E\u003Cspan class=\\\"hljs-meta\\\"\u003E#\u003Cspan class=\\\"hljs-meta-keyword\\\"\u003Einclude\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-meta-string\\\"\u003E&#x3C;stdio.h\u003E\u003C\u002Fspan\u003E\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eint\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title\\\"\u003Emain\u003C\u002Fspan\u003E\u003Cspan class=\\\"hljs-params\\\"\u003E()\u003C\u002Fspan\u003E \u003C\u002Fspan\u003E{\\n   \u003Cspan class=\\\"hljs-built_in\\\"\u003Eprintf\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-string\\\"\u003E\\\"Hello, World!\\\"\u003C\u002Fspan\u003E);\\n   \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E;\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\"}"}</script>
+</div>
+	</body>
+</html>
