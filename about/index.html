@@ -6,28 +6,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>About</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-dd1lau">
 
+		
 
-
-<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-4ba75c88.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-0ad3dc65.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/paths-d3b7dcf1.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/about.svelte-03942b6d.js">
-			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-2f5a01d9.css">
-
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-c81f26a1.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-c8954ef0.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/paths-45dac81d.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/__layout.svelte-82c8618b.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/about.svelte-332d12c2.js">
+		<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-a8cd1609.css">
+		<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/__layout.svelte-a8a0c7a2.css">
 
 		<script type="module">
-			import { start } from "/svelte-kit-blog-demo/_app/start-4ba75c88.js";
+			import { start } from "/svelte-kit-blog-demo/_app/start-c81f26a1.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/svelte-kit-blog-demo","assets":"/svelte-kit-blog-demo"},
 				session: {},
 				host: location.host,
 				route: true,
+				spa: false,
+				trailing_slash: "never",
 				hydrate: {
 					status: 200,
 					error: null,
 					nodes: [
-						import("/svelte-kit-blog-demo/_app/pages/about.svelte-03942b6d.js")
+						import("/svelte-kit-blog-demo/_app/pages/__layout.svelte-82c8618b.js"),
+						import("/svelte-kit-blog-demo/_app/pages/about.svelte-332d12c2.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant

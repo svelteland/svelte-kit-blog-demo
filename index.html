@@ -6,29 +6,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Home</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github.min.css" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass" data-svelte="svelte-dd1lau"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Mono" data-svelte="svelte-dd1lau">
 
+		
 
-
-<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-4ba75c88.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-0ad3dc65.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/paths-d3b7dcf1.js">
-			<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/index.svelte-1478b5c7.js">
-			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-2f5a01d9.css">
-			<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/index.svelte-1254d3f5.css">
-
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/start-c81f26a1.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/vendor-c8954ef0.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/chunks/paths-45dac81d.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/__layout.svelte-82c8618b.js">
+		<link rel="modulepreload" href="/svelte-kit-blog-demo/_app/pages/index.svelte-fa30a36a.js">
+		<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/start-a8cd1609.css">
+		<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/__layout.svelte-a8a0c7a2.css">
+		<link rel="stylesheet" href="/svelte-kit-blog-demo/_app/assets/pages/index.svelte-1254d3f5.css">
 
 		<script type="module">
-			import { start } from "/svelte-kit-blog-demo/_app/start-4ba75c88.js";
+			import { start } from "/svelte-kit-blog-demo/_app/start-c81f26a1.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"/svelte-kit-blog-demo","assets":"/svelte-kit-blog-demo"},
 				session: {},
 				host: location.host,
 				route: true,
+				spa: false,
+				trailing_slash: "never",
 				hydrate: {
 					status: 200,
 					error: null,
 					nodes: [
-						import("/svelte-kit-blog-demo/_app/pages/index.svelte-1478b5c7.js")
+						import("/svelte-kit-blog-demo/_app/pages/__layout.svelte-82c8618b.js"),
+						import("/svelte-kit-blog-demo/_app/pages/index.svelte-fa30a36a.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -69,7 +73,7 @@
 
 
 
-	<script type="svelte-data" url="/index.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"[{\"metadata\":{\"title\":\"Create Your Blog with SvelteKit\",\"date\":\"Apr 3, 2021\",\"excerpt\":\"It's time to rewrite your blog in SvelteKit!\"},\"slug\":\"create-your-blog\"},{\"metadata\":{\"title\":\"Deploy the blog to Github Pages\",\"date\":\"Apr 4, 2021\",\"excerpt\":\"Fun fact: Github Pages is free!\"},\"slug\":\"deply-to-github\"},{\"metadata\":{\"title\":\"Decorating Your Blog\",\"date\":\"Apr 5, 2021\",\"excerpt\":\"Little code but fancy look!\"},\"slug\":\"decoration\"}]"}</script>
+	<script type="application/json" data-type="svelte-data" data-url="/svelte-kit-blog-demo/index.json">{"status":200,"statusText":"","headers":{"content-type":"text/plain;charset=UTF-8"},"body":"[{\"metadata\":{\"title\":\"Create Your Blog with SvelteKit\",\"date\":\"Apr 3, 2021\",\"excerpt\":\"It's time to rewrite your blog in SvelteKit!\"},\"slug\":\"create-your-blog\"},{\"metadata\":{\"title\":\"Deploy the blog to Github Pages\",\"date\":\"Apr 4, 2021\",\"excerpt\":\"Fun fact: Github Pages is free!\"},\"slug\":\"deply-to-github\"},{\"metadata\":{\"title\":\"Decorating Your Blog\",\"date\":\"Apr 5, 2021\",\"excerpt\":\"Little code but fancy look!\"},\"slug\":\"decoration\"}]"}</script>
 </div>
 	</body>
 </html>
