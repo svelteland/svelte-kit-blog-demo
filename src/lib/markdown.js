@@ -28,5 +28,13 @@ export function process(filename) {
     metadata.date = dayjs(metadata.date).format("MMM D, YYYY");
   }
   let content = runner.stringify(runner.runSync(tree));
+  if (!metadata) {
+    metadata = {
+      title: "Error!",
+      date: "?",
+      excerpt: "Missing Frontmatter! Expected at least a title and a date!"
+    };
+    content = "Missing Frontmatter! Expected at least a title and a date!"
+  }
   return { metadata, content };
 }
