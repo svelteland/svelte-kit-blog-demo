@@ -23,7 +23,7 @@ let runner = unified()
 
 And the generated html would have the class names of highlight.js.
 
-Then, attach the desired style theme to the header in `$layout.svelte`. In this project, I chosed the github theme:
+Then, attach the desired style theme to the header in `__layout.svelte`. In this project, I chosed the github theme:
 
 ```html
 <svelte:head>

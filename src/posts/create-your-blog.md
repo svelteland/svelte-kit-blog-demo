@@ -30,7 +30,7 @@ In SvelteKit, we have a so-called *a filesystem-based router*. The files in `src
 
 ```
 route
-├── $layout.svelte
+├── __layout.svelte
 ├── about.svelte
 ├── [slug].svelte
 └── index.svelte
@@ -38,7 +38,7 @@ route
 
 where `about.svelte` will be `xxx.com/about`, `index.svelte` will be `xxx.com/`. As for the `[slug].svelte`, it is a dynamic route, whose dynamic parameter is the `slug` in the bracket. For example, we may have a generated `xxx.com/hello-world`, then SvelteKit will use `[slug].svelte` to generate this page and set `slug` to `hello-world`.
 
-The remaining `$layout.svelte` file serves as the layout template, all other files will be rendered inside the `<slot></slot>` of it.
+The remaining `__layout.svelte` file serves as the layout template, all other files will be rendered inside the `<slot></slot>` of it.
 
 ### Import Components
 
@@ -54,7 +54,7 @@ A typical use of the layout file is adding a navigation bar. In SvelteKit, we sh
 </div>
 ```
 
-And in `$layout.svelte`, I can import the `Nav` component in this way:
+And in `__layout.svelte`, I can import the `Nav` component in this way:
 
 ```html
 <script>

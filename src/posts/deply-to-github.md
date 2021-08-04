@@ -14,11 +14,15 @@ Adapters in SvelteKit are small plugins for building apps on specific platform. 
 npm i -D @sveltejs/adapter-static
 ```
 
-And change the adapter part of `svelte.config.cjs` to:
+And change the adapter part of `svelte.config.js` to:
 
 ```js
+import static_adapter from '@sveltejs/adapter-static';
+
+...
+
 //adapter: node(),
-adapter: require('@sveltejs/adapter-static')(),
+adapter: static_adapter(),
 ```
 
 By the time on this post, there is some error with the default installed `@sveltejs/adapter-static`, you may encounter error like:
@@ -60,22 +64,22 @@ After creating a corresponding repo (in my case [svelteland/svelte-kit-blog-demo
 npm run deploy
 ```
 
-The `gh-pages` library will post the files in `build` folder to a new remote branch -- `gh-pages`, where Github Pages will look for static contents to host. The root url of the hosted app is `xxx.github.io/yyy` if your app is `xxx/yyy`. In my case, the address is `svelteland.github.io/svelte-kit-blog-demo`.
+The `gh-pages` library will post the files in `.svelte-kit/static/build` folder to a new remote branch -- `gh-pages`, where Github Pages will look for static contents to host. The root url of the hosted app is `xxx.github.io/yyy` if your app is `xxx/yyy`. In my case, the address is `svelteland.github.io/svelte-kit-blog-demo`.
 
 Are we all set? Unfortunately, we are not... The hosted app does not work. All the CSS and JavaScripts are missing and  the routing is a mess. The reason for those is that the root for a Github Pages is, as we just mentioned, `xxx.github.io/yyy`, instead of `xxx.github.io`. Therefore we need to configure the relative directory, so that when looking for `a.css`, the app knows we actually need `xxx.github.io/yyy/a.css` but not `xxx.github.io/a.css`.
 
-Apart from that, lots of CSS and js files are in `build/_app` folder. However, the folder starts with underscore are ignored by Github Pages because of Jekyll. We need to disable Jekyll by updating the 2 command below in `package.json`:
+Apart from that, lots of CSS and js files are in `.svelte-kit/static/build/_app` folder. However, the folder starts with underscore are ignored by Github Pages because of Jekyll. We need to disable Jekyll by updating the 2 command below in `package.json`:
 
 ```json
-"build": "rm -rf build && svelte-kit build && touch build/.nojekyll",
-"deploy": "npm run build && npx gh-pages -d build -t true"
+"build": "rm -rf build && svelte-kit build && touch .svelte-kit/static/build/.nojekyll",
+"deploy": "npm run build && npx gh-pages -d .svelte-kit/static/build -t true"
 ```
 
 where the `-t true` flag in `deploy` is to make the `gh-pages` upload files starts with dot.
 
 ## Set relative path
 
-First we need to set the `paths.base` and `paths.assets` config in `svelte.config.cjs` to the relative path. In my case, it is:
+First we need to set the `paths.base` and `paths.assets` config in `svelte.config.js` to the relative path. In my case, it is:
 
 ``` json
 // Comment the paths if wants to run in dev mode.

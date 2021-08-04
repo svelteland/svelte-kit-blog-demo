@@ -3,9 +3,9 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
-		"build": "rm -rf build && svelte-kit build && touch build/.nojekyll",
+		"build": "rm -rf build && svelte-kit build && touch .svelte-kit/static/build/.nojekyll",
 		"start": "svelte-kit start",
-		"deploy": "npm run build && npx gh-pages -d build -t true"
+		"deploy": "npm run build && npx gh-pages -d .svelte-kit/static/build -t true"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "next",
