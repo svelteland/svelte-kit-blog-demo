@@ -11,30 +11,14 @@ After the first post, we already have a blog that runs on the local machine. Now
 Adapters in SvelteKit are small plugins for building apps on specific platform. The default adapter of a SvelteKit app is `adapter-node`, which runs the app with a simple Node server. To host the app to Github Pages, we need to convert the app to static files with `adapter-static`.
 
 ```bash
-npm i -D @sveltejs/adapter-static
+npm i -D @sveltejs/adapter-static@next
 ```
 
 And change the adapter part of `svelte.config.js` to:
 
 ```js
-import static_adapter from '@sveltejs/adapter-static';
-
-...
-
-//adapter: node(),
-adapter: static_adapter(),
+import adapter from '@sveltejs/adapter-static';
 ```
-
-By the time on this post, there is some error with the default installed `@sveltejs/adapter-static`, you may encounter error like:
-
-```
-config.kit.adapter should be an object with an "adapt" method.
-See https://kit.svelte.dev/docs#adapters
-Error: config.kit.adapter should be an object with an "adapt" method.
-See https://kit.svelte.dev/docs#adapters
-```
-
-Before the Svelte team update the package, we could manually overwrite the `index.js` file in `node_modules/@sveltejs/adapter-static` with [the latest version in the repo](https://github.com/sveltejs/kit/tree/master/packages/adapter-static).
 
 ## Use gh-pages to deploy
 
